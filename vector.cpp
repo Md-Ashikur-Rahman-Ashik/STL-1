@@ -8,15 +8,21 @@ int main()
 
     int vectorSize;
     cin >> vectorSize;
-    // vector<int> integerVector(vectorSize);
-    vector<int> integerVector;
+    vector<int> integerVector(vectorSize, 5);
     for (int i = 0; i < vectorSize; i++)
     {
-        int inputValue;
-        cin >> inputValue;
-
-        integerVector.push_back(inputValue);
+        cout << integerVector[i] << '\n';
     }
+
+    // vector<int> integerVector(vectorSize);
+    // vector<int> integerVector;
+    // for (int i = 0; i < vectorSize; i++)
+    // {
+    //     int inputValue;
+    //     cin >> inputValue;
+
+    //     integerVector.push_back(inputValue);
+    // }
 
     return 0;
 }
