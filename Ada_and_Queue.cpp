@@ -8,117 +8,82 @@ int main()
 
     int testcase;
     cin >> testcase;
-    ;
 
     queue<int> integerQueue;
+
+    int x = 0;
+    deque<long long int> integerDequeue;
 
     for (int i = 0; i < testcase; i++)
     {
         string inputString;
         cin >> inputString;
 
-        if (inputString == "toFront")
-        {
-            int inputValue;
-            cin >> inputValue;
-
-            stack<int> integerStack;
-            while (!integerQueue.empty())
-            {
-                int frontValue = integerQueue.front();
-                integerStack.push(frontValue);
-                integerQueue.pop();
-            }
-
-            integerStack.push(inputValue);
-
-            while (!integerStack.empty())
-            {
-                int topValue = integerStack.top();
-                integerQueue.push(topValue);
-                integerStack.pop();
-            }
-        }
-
-        if (inputString == "front")
-        {
-            int queueSize = integerQueue.size();
-
-            if (queueSize > 0)
-            {
-                cout << integerQueue.front() << '\n';
-                integerQueue.pop();
-            }
-            else
-            {
-                cout << "No job for Ada?\n";
-            }
-        }
-
         if (inputString == "back")
         {
-            int queueSize = integerQueue.size();
-
-            if (queueSize == 0)
+            if (integerDequeue.empty())
             {
                 cout << "No job for Ada?\n";
             }
+            else if (x == 0)
+            {
+                cout << integerDequeue.back() << '\n';
+                integerDequeue.pop_back();
+            }
             else
             {
-                stack<int> integerStack;
-
-                while (!integerQueue.empty())
-                {
-                    int frontValue = integerQueue.front();
-                    integerStack.push(frontValue);
-                    integerQueue.pop();
-                }
-
-                cout << integerStack.top() << '\n';
-                integerStack.pop();
-
-                stack<int> secondaryStack;
-
-                while (!integerStack.empty())
-                {
-                    int topValue = integerStack.top();
-                    secondaryStack.push(topValue);
-                    integerStack.pop();
-                }
-
-                while (!secondaryStack.empty())
-                {
-                    int topValue = secondaryStack.top();
-                    integerQueue.push(topValue);
-                    secondaryStack.pop();
-                }
+                cout << integerDequeue.front() << '\n';
+                integerDequeue.pop_front();
             }
         }
-
-        if (inputString == "reverse")
+        else if (inputString == "front")
         {
-            stack<int> integerStack;
-            while (!integerQueue.empty())
+            if (integerDequeue.empty())
             {
-                int frontValue = integerQueue.front();
-                integerStack.push(frontValue);
-                integerQueue.pop();
+                cout << "No job for Ada?\n";
             }
-
-            while (!integerStack.empty())
+            else if (x == 1)
             {
-                int topValue = integerStack.top();
-                integerQueue.push(topValue);
-                integerStack.pop();
+                cout << integerDequeue.back() << '\n';
+                integerDequeue.pop_back();
+            }
+            else
+            {
+                cout << integerDequeue.front() << '\n';
+                integerDequeue.pop_front();
             }
         }
-
-        if (inputString == "push_back")
+        else if (inputString == "reverse")
+        {
+            x = !x;
+        }
+        else if (inputString == "push_back")
         {
             int inputValue;
             cin >> inputValue;
 
-            integerQueue.push(inputValue);
+            if (x == 0)
+            {
+                integerDequeue.push_back(inputValue);
+            }
+            else
+            {
+                integerDequeue.push_front(inputValue);
+            }
+        }
+        else if (inputString == "toFront")
+        {
+            int inputValue;
+            cin >> inputValue;
+
+            if (x == 0)
+            {
+                integerDequeue.push_front(inputValue);
+            }
+            else
+            {
+                integerDequeue.push_back(inputValue);
+            }
         }
     }
 
