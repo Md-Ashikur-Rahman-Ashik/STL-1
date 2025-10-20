@@ -11,36 +11,54 @@ int main()
         string inputString;
         cin >> inputString;
 
-        string smallString, capitalString;
-        for (auto individualCharacter : inputString)
+        vector<int> capitalVector;
+        vector<int> smallVector;
+
+        int stringSize = inputString.length();
+
+        for (int i = 0; i < stringSize; i++)
         {
-            if (individualCharacter == 'B')
+            if (inputString[i] == 'b')
             {
-                int stringSize = capitalString.length();
-                if (stringSize > 0)
+                int vectorSize = smallVector.size();
+                if (vectorSize > 0)
                 {
-                    capitalString.pop_back();
+                    int index = smallVector.back();
+                    inputString[index] = '0';
+                    inputString[i] = '0';
+                    smallVector.pop_back();
                 }
             }
-            else if (individualCharacter == 'b')
+            else if (inputString[i] == 'B')
             {
-                int stringSize = smallString.length();
-                if (stringSize > 0)
+                int vectorSize = capitalVector.size();
+                if (vectorSize > 0)
                 {
-                    smallString.pop_back();
+                    int index = capitalVector.back();
+                    inputString[index] = '0';
+                    inputString[i] = '0';
+                    capitalVector.pop_back();
                 }
             }
-            else if (individualCharacter >= 65 && individualCharacter <= 90)
+            else if (inputString[i] >= 97 && inputString[i] <= 122)
             {
-                capitalString.push_back(individualCharacter);
+                smallVector.push_back(i);
             }
-            else if (individualCharacter >= 97 && individualCharacter <= 122)
+            else if (inputString[i] >= 65 && inputString[i] <= 90)
             {
-                smallString.push_back(individualCharacter);
+                capitalVector.push_back(i);
             }
         }
 
-        
+        for (auto individualCharacter : inputString)
+        {
+            if (individualCharacter != '0' && individualCharacter != 'b' && individualCharacter != 'B')
+            {
+                cout << individualCharacter;
+            }
+        }
+
+        cout << "\n";
     }
 
     return 0;
